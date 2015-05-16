@@ -143,7 +143,6 @@ textarea {
 }
 
 select {
-  @include appearance(none);
   text-indent: 1px;
   text-overflow: '';
 }
