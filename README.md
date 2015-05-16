@@ -18,4 +18,4 @@
    grunt
    ```
 
-4. Point your browser to `http://localhost:4000`.
+4. Point your browser to [localhost:4000](http://localhost:4000).
