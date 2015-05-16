@@ -1,0 +1,469 @@
+//  ----------------------------------------------------------------------
+//  =VARS - DEFAULTS
+//  ----------------------------------------------------------------------
+
+//  =TYPE
+$text: #000 !default;
+$fonts: helvetica neue, helvetica, arial, sans-serif !default;
+$font-size: 15px !default;
+
+$line-height: 1.35 !default;
+
+$h-font-weight: normal !default;
+
+$placeholder: rgba($text, 0.75) !default;
+$btn-align: left !default;
+
+
+//  =GRID
+$cols:             3     !default;
+$cols-total:       $cols !default;
+$cols-fixed-total: $cols !default;
+$cols-copy-total:  $cols !default;
+
+
+//  =SPACING
+$gutter:   20px !default;
+$gutter-y: 50px !default;
+$block-y:  20px !default;
+
+$container-gutter: $gutter !default;
+
+$list-p: 1.35em !default;
+
+$modal-s: 10px !default;
+
+$form-single-gutter: $gutter / 2 !default;
+
+
+//  =CONTENT
+$content: 960px !default;
+
+
+//  =ANIMATION
+$dur: 150ms !default;
+$ease: ease-in-out !default;
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =VARS
+//  ----------------------------------------------------------------------
+
+//  =VIEWPORTS
+$full:       $content + $container-gutter * 2 !default;
+$gt-full:    $full + 1                        !default;
+$lt-full:    $full - 1                        !default;
+$desktop:    960px                            !default;
+$tablet:     768px                            !default;
+$mobile:     568px                            !default;
+$lt-mobile:  $mobile - 1                      !default;
+$mobile-med: 480px                            !default;
+$mobile-sm:  320px                            !default;
+$bps: full $full, lt-full $lt-full, desktop $desktop, tablet $tablet, mobile $mobile, lt-mobile $lt-mobile mobile-med $mobile-med, mobile-sm $mobile-sm !default;
+
+
+//  =COLORS
+$fb:        #3b5998;
+$twitter:   #00aced;
+$pinterest: #cb2027;
+$socials: fb $fb, twitter $twitter, pinterest $pinterest;
+
+
+//  =WEIGHTS
+$thin:  100;
+$xlt:   200;
+$lt:    300;
+$med:   500;
+$sbold: 600;
+$xbold: 800;
+$ultra: 900;
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =WEB FONTS
+//  ----------------------------------------------------------------------
+
+//@each $font in  {
+//  @font-face {
+//    font-family: $font; font-weight: normal;
+//    src: url('/font/#{$font}.eot?') format('embedded-opentype'),
+//         url('/font/#{$font}.woff') format('woff'),
+//         url('/font/#{$font}.ttf')  format('truetype');
+//  }
+//}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =MIXINS
+//  ----------------------------------------------------------------------
+
+$prefixes: webkit, moz, ms, o;
+
+@mixin prefix ($prop, $val, $prefixes: $prefixes) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$prop}: $val;
+  }
+  #{$prop}: $val;
+}
+
+@mixin appearance($value) {
+  @include prefix(appearance, $value);
+}
+
+@mixin bg-gradient($start, $end, $orientation: vertical) {
+  $orientation: if($orientation == vertical, to bottom, to right);
+  $filter-orientation: if($orientation == vertical, 0, 1);
+  background: mix($start, $end);
+  background: linear-gradient($orientation, $start, $end);
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=#{$filter-orientation}, startColorstr='#{ie-hex-str($start)}', endColorstr='#{ie-hex-str($end)}');
+}
+
+@mixin bg-svg($img) {
+  background: image-url($img + '.svg');
+  background-size: image-width($img + '.png') image-height($img + '.png');
+
+  .no-svg & {
+    background-image: image-url($img + '.png');
+  }
+}
+
+@mixin border-image($img, $border-w-x, $border-w-y: $border-w-x, $border-color: #000) {
+  border-image: image-url($img) strip-unit($border-w-x) strip-unit($border-w-y) repeat;
+
+  .no-borderimage & {
+    border: 1px $border-color solid;
+  }
+}
+
+@mixin border-radius($side, $radius: $radius) {
+  @if $side == top or $side == bottom {
+    border-#{$side}-right-radius: $radius;
+    border-#{$side}-left-radius: $radius;
+  }
+
+  @if $side == right or $side == left {
+    border-top-#{$side}-radius: $radius;
+    border-bottom-#{$side}-radius: $radius;
+  }
+}
+
+@mixin center($w, $h) {
+  width: $w;
+  height: $h;
+  margin: (-$h / 2) 0 0 (-$w / 2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+@mixin center-v {
+  display: table;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+@mixin cf {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+.cf { @include cf; }
+
+//@mixin font-icon {
+//  font-family: ;
+//  font-style: normal;
+//  font-weight: normal;
+//  speak: none;
+//  -webkit-font-smoothing: antialiased;
+//  -moz-osx-font-smoothing: grayscale;
+//}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: rem($size);
+}
+
+@mixin list-float($m-r: 0, $m-y: 0) {
+  @include cf;
+
+  > li {
+    float: left;
+    @if $m-r != 0 {
+      margin-right: $m-r;
+    }
+    @if $m-y != 0 {
+      margin-bottom: $m-y;
+    }
+  }
+}
+
+@mixin list-inline($m: 0) {
+  > li { display: inline-block; }
+  @if $m != 0 {
+    > li + li { margin-left: $m; }
+  }
+}
+
+@mixin ir {
+  overflow: hidden;
+  text-indent: 150%;
+  white-space: nowrap;
+}
+.ir { @include ir; }
+
+@mixin modal-w($w) {
+  width: $w;
+  margin: 0 0 0 (-$w / 2);
+
+  @media (max-width: $w + ($modal-s * 2)) {
+    width: auto;
+    margin: 0;
+    top: $modal-s;
+    right: $modal-s;
+    left: $modal-s;
+  }
+}
+
+@mixin pointer-base($size: $pointer-size) {
+  &:after {
+    content: '';
+    border: $size transparent solid;
+    position: absolute;
+  }
+}
+
+@mixin pointer-position($side: 'y', $size: $pointer-size) {
+  @if $side == y {
+    margin: 0 0 0 (-$size);
+    left: 50%;
+  }
+  @else if $side == x {
+    margin: -$size 0 0 0;
+    top: 50%;
+  }
+}
+
+@mixin pointer($side: top, $size: 10px, $color: transparent, $alignment: center, $offset: $size * 1.5) {
+  position: relative;
+
+  &:after {
+    content: '';
+    border: $size transparent solid;
+    position: absolute;
+
+    @if $side == top or $side == bottom {
+      @include pointer-position(y, $size);
+
+      @if $alignment == left {
+        margin-left: 0;
+        left: $offset
+      }
+      @else if $alignment == right {
+        margin-left: 0;
+        right: $offset;
+        left: auto;
+      }
+    }
+    @else if $side == right or $side == left {
+      @include pointer-position(x, $size);
+
+      @if $alignment == top {
+        margin-top: 0;
+        top: $offset
+      }
+      @else if $alignment == bottom {
+        margin-top: 0;
+        top: auto;
+        bottom: $offset;
+      }
+    }
+
+    @if $side == top {
+      border-bottom-color: $color;
+      bottom: 100%;
+    }
+    @else if $side == right {
+      border-left-color: $color;
+      left: 100%;
+    }
+    @else if $side == bottom {
+      border-top-color: $color;
+      top: 100%;
+    }
+    @else if $side == left {
+      border-right-color: $color;
+      right: 100%;
+    }
+  }
+}
+
+@mixin text-break {
+  word-break: break-all;
+  word-break: break-word;
+  word-wrap:  break-word;
+}
+
+@mixin text-truncate {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@mixin reset {
+  width: auto;
+  background: none;
+  border: 0;
+  float: none;
+  margin: 0;
+  padding: 0;
+  position: static;
+  @include reset-type;
+}
+
+@mixin reset-type {
+  color: $text;
+  font-family: $fonts;
+  font-size: $font-size;
+  line-height: $line-height;
+  text-transform: none;
+}
+
+@mixin reset-type-heading {
+  @include reset-type;
+  font-weight: $h-font-weight;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+@mixin reset-margins {
+  &:first-child { margin-top:    0; }
+  &:last-child  { margin-bottom: 0; }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =DISPLAY
+//  ----------------------------------------------------------------------
+
+@mixin hidden {
+  width: 1px;
+  height: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.hidden {
+  @include hidden;
+}
+
+%hide {
+  display: none !important;
+}
+
+.hide {
+  @extend %hide;
+}
+
+.show {
+  display: inherit;
+}
+
+@each $bp in $bps {
+  .hide-show-#{nth($bp, 1)} {
+    @extend %hide;
+
+    @media (max-width: nth($bp, 2)) {
+      display: inherit !important;
+
+      &.inline {
+        display: inline !important;
+      }
+    }
+  }
+
+  .show-hide-#{nth($bp, 1)} {
+    @media (max-width: nth($bp, 2)) {
+      display: none !important;
+    }
+  }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =MEDIA QUERIES & BROWSER TARGETING
+//  ----------------------------------------------------------------------
+
+$hidpi: '-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi';
+
+@mixin mq-class($bp, $class) {
+  @media (max-width: $bp) {
+    @content;
+  }
+
+  .#{$class} & {
+    @content;
+  }
+}
+
+@mixin vendor($vendor) {
+  @if $vendor == webkit {
+    @media (-webkit-min-device-pixel-ratio: 0) {
+      @content;
+    }
+  }
+  @else if $vendor == ff {
+    @-moz-document url-prefix() {
+      @content;
+    }
+  }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =FUNCTIONS
+//  ----------------------------------------------------------------------
+
+@function aspect-ratio($w, $h) {
+  @return $h / $w * 100%;
+}
+
+@function rem($num) {
+  $num: strip-units($num);
+  @return #{$num / 16}rem;
+}
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function w($target, $context) {
+  @return $target / $context * 100%;
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+  <meta charset="utf-8">
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="author"      content="Dustin Horton">
+
+  <meta property="og:site_name"   content="{{ site.title }}">
+  <meta property="og:title"       content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image"       content="{{ "/assets/img/1200x630.png" | prepend: site.baseurl }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="{{ "/css/style.min.css" | prepend: site.baseurl }}">
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" type="application/rss+xml" title="{{ site.title }}">
+
+  <body>
+    <header class="header">
+      <a href="/" class="header-brand"></a>
+
+      <nav class="nav">
+        {% include pages.html %}
+      </nav>
+    </header>
+
+
+    <main class="main">
+      {{ content }}
+    </main>
+
+    <footer class="footer">
+      <nav class="footer-nav">
+        {% include pages.html %}
+      </nav>
+    </footer>
+  </body>
+</html>
