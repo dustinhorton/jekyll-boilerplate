@@ -7,14 +7,15 @@
 * {
   margin: 0;
   padding: 0;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 
 html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-text-size-adjust: 100%;  // ios
   -ms-text-size-adjust: 100%;  // winmo
 }
+
 
 article,
 aside,
@@ -40,47 +41,35 @@ progress {
   vertical-align: baseline;
 }
 
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+
+  &:before,
+  &:after {
+    content: '';
+    content: none;
+  }
+}
+
+address {
+  font-style: normal;
+}
+
 audio:not([controls]) {
   display: none;
 }
 
-hr {  // ff
-  height: 0;
-  box-sizing: content-box;
-}
-
-img {
-  border: 0;  // ie 8/9/10 inside `a`
-}
-
-svg:not(:root) {
-  overflow: hidden;  // ie 9/10/11
-}
-
 pre {
   overflow: auto;
-}
-
-
-a:active {
-  background-color: transparent;  // ie 10
-}
-
-abbr {
-  speak: spell-out;
-}
-
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-
-b,
-strong {
-  font-weight: bold;
-}
-
-small {
-  font-size: 100%;
 }
 
 
@@ -89,10 +78,18 @@ legend {
   border: 0;
 }
 
+label,
+input[type="checkbox"],
+input[type="radio"],
+select,
+button {
+  cursor: pointer;
+}
+
 input,
+textarea,
 select,
 optgroup,
-textarea,
 button {
   background: none;
   color: inherit;
@@ -101,9 +98,21 @@ button {
 
 input,
 textarea,
+select,
+button {
+  border: 0;
+  outline: 0;
+}
+
+input,
+textarea,
 select {
   @include appearance(none);
   border-radius: 0;
+}
+
+input,
+textarea {
   line-height: normal;
 }
 
@@ -136,6 +145,63 @@ button {
 button::-moz-focus-inner {
   border: 0;
   padding: 0;
+}
+
+
+b,
+strong {
+  font-weight: bold;
+}
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+a:focus,
+a:active {
+  outline: 0;
+}
+
+a:active {
+  background-color: transparent;  // ie 10
+}
+
+abbr {
+  speak: spell-out;
+}
+
+cite {
+  font-style: normal;
+}
+
+hr {  // ff
+  height: 0;
+  box-sizing: content-box;
+}
+
+img {
+  border: 0;  // ie 8/9/10 inside `a`
+}
+
+small {
+  font-size: 100%;
+}
+
+svg:not(:root) {
+  overflow: hidden;  // ie 9/10/11
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: normal;
+  text-align: left;
 }
 
 
