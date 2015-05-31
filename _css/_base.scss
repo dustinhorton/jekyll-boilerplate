@@ -126,4 +126,6 @@ select {
 
 .active { cursor: default; }
 .disabled,
-[disabled] { cursor: default !important; pointer-events: none; }
+[disabled],
+.disabled *,
+[disabled] * { cursor: default !important; pointer-events: none; }
