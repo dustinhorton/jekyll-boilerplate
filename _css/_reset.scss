@@ -1,52 +1,12 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
 * {
   margin: 0;
   padding: 0;
 }
 
 
-html {
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-text-size-adjust: 100%;  // ios
-  -ms-text-size-adjust: 100%;  // winmo
-}
-
-
-article,
-aside,
-details,  // ie 10/11
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,  // ie 11
-menu,
-nav,
-section,
-summary {  // ie 10/11
-  display: block;  // ie 8/9
-}
-
-canvas,
-audio,
-video,
-progress {
-  display: inline-block;  // ie 8/9
-  vertical-align: baseline;
-}
-
-
-h1, h2, h3, h4, h5, h6 { font-weight: normal; }
-
-ol,
-ul {
-  list-style: none;
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
 }
 
 blockquote,
@@ -60,138 +20,14 @@ q {
   }
 }
 
-address {
-  font-style: normal;
+ol,
+ul {
+  list-style: none;
 }
 
-audio:not([controls]) {
-  display: none;
-}
-
-pre {
-  overflow: auto;
-}
-
-
-fieldset,
-legend {
-  border: 0;
-}
-
-label,
-input[type="checkbox"],
-input[type="radio"],
-select,
-button {
-  cursor: pointer;
-}
-
-input,
-textarea,
-select,
-optgroup,
-button {
-  background: none;
-  color: inherit;
-  font: inherit;
-}
-
-input,
-textarea,
-select,
-button {
-  border: 0;
-  outline: 0;
-}
-
-input,
-textarea,
-select {
-  @include appearance(none);
-  border-radius: 0;
-}
-
-input,
-textarea {
-  line-height: normal;
-}
-
-select,  // ff
-button {  // ff & ie
-  text-transform: none;
-}
-
-input {
-  line-height: normal;  // ff
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;  // chrome
-}
-
-textarea {
-  overflow: auto;  // ie
-}
-
-optgroup {
-  font-weight: bold;  // override reset
-}
-
-button {
-  overflow: visible;  // ie
-}
-
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-
-b,
-strong {
-  font-weight: bold;
-}
-
-img,
-picture {
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-}
-
-a:focus,
-a:active {
-  outline: 0;
-}
-
-a:active {
-  background-color: transparent;  // ie 10
-}
-
-abbr {
-  speak: spell-out;
-}
-
-cite {
-  font-style: normal;
-}
-
-hr {  // ff
-  height: 0;
-  box-sizing: content-box;
-}
-
-img {
-  border: 0;  // ie 8/9/10 inside `a`
-}
-
-small {
-  font-size: 100%;
-}
-
-svg:not(:root) {
-  overflow: hidden;  // ie 9/10/11
+pre,
+code {
+  font-family: monospace, monospace;
 }
 
 table {
@@ -205,16 +41,40 @@ th {
 }
 
 
-template {
-  display: none;  // safari & ie 8/9/11
+button,
+input,
+textarea
+select,
+optgroup {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  background: none;
+  border: 0;
+  outline: 0;
+}
+
+fieldset,
+legend {
+  border: 0;
+}
+
+optgroup {
+  font-weight: bold;  // override previous reset
 }
 
 
-[hidden] {
-  display: none;  // ie 8/9/10
+address,
+cite {
+  font-style: normal;
 }
 
-
-@-ms-viewport {
-  width: device-width;
+a {
+  outline: 0;
+  text-decoration: none;
 }
