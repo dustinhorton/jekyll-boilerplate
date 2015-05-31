@@ -8,6 +8,15 @@ module.exports = function(grunt) {
       assets: ''
     },
 
+    devUpdate: {
+      main: {
+        options: {
+          updateType: 'force',
+          semver: false
+        }
+      }
+    },
+
     concurrent: {
       uglify_imagemin: ['uglify', 'imagemin']
     },
@@ -56,24 +65,12 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= app.assets %>_img/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: ['**/*.{svg,svgz,png,jpg,gif}'],
           dest: '<%= app.assets %>img/'
         }],
         options: {
           optimizationLevel: 7
         }
-      }
-    },
-
-    copy: {
-      assets: {
-        files: [{
-          expand: true,
-          cwd: '<%= app.assets %>_img/',
-          src: ['**/*.{svg,svgz}'],
-          dest: '<%= app.assets %>img/',
-          filter: 'isFile'
-        }]
       }
     },
 
@@ -124,9 +121,9 @@ module.exports = function(grunt) {
         tasks: ['shell:jekyll_build']
       }
     }
-
   });
 
   grunt.registerTask('serve', ['shell:jekyll_serve']);
-  grunt.registerTask('default', ['sass', 'newer:autoprefixer', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'newer:copy', 'shell:jekyll_build', 'watch']);
+  grunt.registerTask('default', ['sass', 'newer:autoprefixer', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
+  grunt.registerTask('update', ['devUpdate']);
 };
