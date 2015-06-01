@@ -107,7 +107,6 @@ module.exports = function(grunt) {
         files: ['<%= app.assets %>_img/**/*.{svg,svgz,png,jpg,gif}'],
         tasks: [
           'newer:imagemin',
-          'newer:copy',
           'shell:jekyll_build'
         ]
       },
