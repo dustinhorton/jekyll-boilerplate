@@ -138,8 +138,3 @@ svg:not(:root) {
 [hidden] {
   display: none;  // ie 8-10
 }
-
-
-@-ms-viewport{
-  width: device-width;
-}
