@@ -10,9 +10,12 @@ select {
   font-family: $fonts;
 }
 
+html {
+  font-size: $font-size;
+}
+
 body {
   color: $text;
-  font-size: $font-size;
   line-height: 1;
 
   .lt-ie9 & {
@@ -139,6 +142,6 @@ select {
 
 @viewport{
   width: device-width;
-  user-zoom: fixed
+  user-zoom: fixed;
   zoom: 1.0;
 }

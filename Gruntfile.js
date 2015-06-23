@@ -2,11 +2,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-
-    app: {
-      assets: ''
-    },
+    assets: '',
+    img_types: 'svg, svgz, png, jpg, gif',
 
     devUpdate: {
       main: {
@@ -24,29 +21,35 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          sourceMap: true,
-          outputStyle: 'compressed'
+          sourceMap: true
         },
         files: {
-          '<%= app.assets %>css/style.min.css': '<%= app.assets %>_css/style.scss'
+          '<%= assets %>css/style.min.css': '<%= assets %>_css/style.scss'
         }
       }
     },
 
-    autoprefixer: {
-      global: {
-        src: '<%= app.assets %>css/style.min.css',
-        dest: '<%= app.assets %>css/style.min.css'
+    postcss: {
+      options: {
+        map: true,
+        processors: [
+          require('autoprefixer-core')({browsers: 'last 2 versions, Explorer >= 8'}),
+          require('csswring')
+        ]
+      },
+      dist: {
+        src: '<%= assets %>css/style.css',
+        dest: '<%= assets %>css/style.min.css'
       }
     },
 
     concat: {
       js: {
         src: [
-          '<%= app.assets %>_js/vendor/**/*.js',
-          '<%= app.assets %>_js/*.js'
+          '<%= assets %>_js/vendor/**/*.js',
+          '<%= assets %>_js/*.js'
         ],
-        dest: '<%= app.assets %>js/script.js'
+        dest: '<%= assets %>js/script.js'
       },
       options: {
         separator: ';'
@@ -56,7 +59,7 @@ module.exports = function(grunt) {
     uglify: {
       js: {
         src: '<%= concat.js.dest %>',
-        dest: '<%= app.assets %>js/script.min.js'
+        dest: '<%= assets %>js/script.min.js'
       }
     },
 
@@ -64,9 +67,9 @@ module.exports = function(grunt) {
       assets: {
         files: [{
           expand: true,
-          cwd: '<%= app.assets %>_img/',
-          src: ['**/*.{svg,svgz,png,jpg,gif}'],
-          dest: '<%= app.assets %>img/'
+          cwd: '<%= assets %>_img/',
+          src: ['**/*.{<%= img_types %>}'],
+          dest: '<%= assets %>img/'
         }],
         options: {
           optimizationLevel: 7
@@ -88,15 +91,15 @@ module.exports = function(grunt) {
         livereload: true
       },
       sass: {
-        files: ['<%= app.assets %>_css/**/*.scss'],
+        files: ['<%= assets %>_css/**/*.scss'],
         tasks: [
           'sass',
-          'newer:autoprefixer',
+          'newer:postcss',
           'shell:jekyll_build'
         ]
       },
       js: {
-        files: ['<%= app.assets %>_js/**/*.js'],
+        files: ['<%= assets %>_js/**/*.js'],
         tasks: [
           'newer:concat',
           'newer:uglify',
@@ -104,7 +107,7 @@ module.exports = function(grunt) {
         ]
       },
       img: {
-        files: ['<%= app.assets %>_img/**/*.{svg,svgz,png,jpg,gif}'],
+        files: ['<%= assets %>_img/**/*.{<%= img_types %>}'],
         tasks: [
           'newer:imagemin',
           'shell:jekyll_build'
@@ -113,9 +116,9 @@ module.exports = function(grunt) {
       livereload: {
         files: [
           '*.html',
-          '<%= app.assets %>css/style.min.css',
-          '<%= app.assets %>js/script.min.js',
-          '<%= app.assets %>img/**/*.{svg,svgz,png,jpg,gif}'
+          '<%= assets %>css/style.min.css',
+          '<%= assets %>js/script.min.js',
+          '<%= assets %>img/**/*.{<%= img_types %>}'
         ],
         tasks: ['shell:jekyll_build']
       }
@@ -123,6 +126,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('serve', ['shell:jekyll_serve']);
-  grunt.registerTask('default', ['sass', 'newer:autoprefixer', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
+  grunt.registerTask('default', ['sass', 'newer:postcss', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
   grunt.registerTask('update', ['devUpdate']);
 };

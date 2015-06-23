@@ -40,6 +40,10 @@ h1 {
   font-size: 100%;  // chrome, safari & ff
 }
 
+hr {
+  height: 1px;
+}
+
 audio:not([controls]) {
   display: none;
   height: 0;  // ios
@@ -100,10 +104,6 @@ a {
 
 abbr {
   speak: spell-out;
-}
-
-hr {
-  height: 0;  // ff
 }
 
 img {

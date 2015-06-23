@@ -456,8 +456,8 @@ $hidpi: '-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi';
 }
 
 @function rem($num) {
-  $num: strip-units($num);
-  @return #{$num / 16}rem;
+  $font-size-rem: strip-unit($num) / strip-unit($font-size) * 1rem;
+  @return $font-size-rem;
 }
 
 @function strip-unit($num) {
