@@ -554,7 +554,7 @@ select {
   font-family: helvetica neue, helvetica, arial, sans-serif; }
 
 html {
-  font-size: 15px; }
+  font-size: 16px; }
 
 body {
   color: #000;
@@ -686,7 +686,7 @@ select {
 .h1 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -697,7 +697,7 @@ select {
 .h2 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -708,7 +708,7 @@ select {
 .h3 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -719,7 +719,7 @@ select {
 .h4 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -730,7 +730,7 @@ select {
 .h5 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -741,7 +741,7 @@ select {
 .h6 {
   color: #000;
   font-family: helvetica neue, helvetica, arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.35;
   text-transform: none;
   font-weight: normal;
@@ -763,15 +763,15 @@ h3, .h3 {
   color: #000; }
 
 h4, .h4 {
-  font-size: 15px;
+  font-size: 16px;
   margin: 0 0 8px; }
 
 h5, .h5 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold; }
 
 h6, .h6 {
-  font-size: 15px;
+  font-size: 16px;
   text-transform: uppercase; }
 
 /*# sourceMappingURL=style.min.css.map */
