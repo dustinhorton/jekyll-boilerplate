@@ -1,0 +1,31 @@
+@function aspect-ratio($w, $h) {
+  @return $h / $w * 100%;
+}
+
+@function rem($num) {
+  $font-size-rem: strip-unit($num) / strip-unit($font-size) * 1rem;
+  @return $font-size-rem;
+}
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function percentage($target, $context: $full) {
+  @return $target / $context * 100%;
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =URLS
+//  ----------------------------------------------------------------------
+
+@function font-url($font) {
+  @return url('#{$font-path}#{$font}');
+}
+
+@function img-url($img) {
+  @return url('#{$img-path}#{$img}');
+}

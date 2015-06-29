@@ -60,11 +60,11 @@
     @for $x from 1 through $i {
       @if $bp == '' {
         .col-#{$x}-#{$i} {
-          width: w($x,$i);
+          width: percentage($x, $i);
         }
       }
       @else {
-        .col-#{$bp}-#{$x}-#{$i} { width: w($x,$i); }
+        .col-#{$bp}-#{$x}-#{$i} { width: percentage($x, $i); }
       }
     }
   }

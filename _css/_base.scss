@@ -39,9 +39,23 @@ table {
 }
 
 a {
-  text-decoration: none;
+  color: inherit;
 }
 
+
+button,
+input,
+textarea,
+select {
+  vertical-align: middle;
+}
+
+button,
+label[for],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
 
 input,
 textarea,
