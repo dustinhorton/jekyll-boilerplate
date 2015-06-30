@@ -34,7 +34,10 @@ module.exports = function(grunt) {
         map: true,
         processors: [
           require('autoprefixer-core')({browsers: 'last 2 versions, Explorer >= 8'}),
-          require('csswring')
+          require('postcss-color-rgba-fallback')(),
+          require('postcss-focus')(),
+          require('postcss-opacity')(),
+          require('cssnano')()
         ]
       },
       dist: {
@@ -47,7 +50,8 @@ module.exports = function(grunt) {
       js: {
         src: [
           '<%= assets %>_js/vendor/**/*.js',
-          '<%= assets %>_js/*.js'
+          '<%= assets %>_js/*.js',
+          '!<%= assets %>_js/vendor/modernizr.js'
         ],
         dest: '<%= assets %>js/script.js'
       },
@@ -62,6 +66,22 @@ module.exports = function(grunt) {
         dest: '<%= assets %>js/script.min.js'
       }
     },
+
+    modernizr: {
+      dist: {
+        devFile: '<%= assets %>_js/vendor/modernizr.js',
+        outputFile: '<%= assets %>js/vendor/modernizr.js',
+      }
+    },
+
+    //sprite: {
+    //  all: {
+    //    src: '<%= assets %>_img/sprite/**/*.png',
+    //    dest: '<%= assets %>_img/sprite.png',
+    //    destCss: '<%= assets %>css/_sprite.scss',
+    //    padding: 2
+    //  }
+    //},
 
     imagemin: {
       assets: {

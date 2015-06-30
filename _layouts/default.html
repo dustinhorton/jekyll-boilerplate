@@ -22,6 +22,8 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" type="application/rss+xml" title="{{ site.title }}">
 
+  <script src="{{ 'js/vendor/modernizr.js' | prepend: site.baseurl | prepend: site.url }}"></script>
+
   <body>
     <header class="header">
       <a href="/" class="header-brand"></a>
@@ -41,5 +43,8 @@
         {% include pages.html %}
       </nav>
     </footer>
+
+
+    <script src="{{ 'js/script.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
   </body>
 </html>

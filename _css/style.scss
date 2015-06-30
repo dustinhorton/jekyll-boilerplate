@@ -1,12 +1,14 @@
-@import //, 'vendor/**/*'
-        'vars'
-      , 'functions'
-      , 'mixins'
-      , 'sass'
-      , 'normalize'
-      , 'reset'
-      , 'grid'
-      , 'base';
+@import
+  //'vendor/**/*'
+    'vars'
+  , 'functions'
+  , 'sass'
+  , 'mixins'
+  , 'normalize'
+  , 'reset'
+  , 'grid'
+  , 'base';
+  //, 'sprite';
 
 
 //  ----------------------------------------------------------------------
@@ -19,10 +21,10 @@
   .h#{$i} { @extend %h#{$i}; @include reset-type-heading; }
 }
 
-%h  { color: $text; font-weight: $h-font-weight; }
-%h1 { color: $text; }
-%h2 { color: $text; }
-%h3 { color: $text; }
+%h  { color: $color; font-weight: $h-font-weight; }
+%h1 { color: $color; }
+%h2 { color: $color; }
+%h3 { color: $color; }
 %h4 { font-size: $font-size; margin: 0 0 8px; }
 %h5 { font-size: $font-size; font-weight: bold; }
 %h6 { font-size: $font-size; text-transform: uppercase; }
@@ -69,20 +71,3 @@
 //  =VIEWS
 //  ----------------------------------------------------------------------
 
-
-
-
-
-
-//  ----------------------------------------------------------------------
-//  =WEB FONTS
-//  ----------------------------------------------------------------------
-
-//@each $font in  {
-//  @font-face {
-//    font-family: $font; font-weight: normal;
-//    src: font-url('#{$font}.eot?') format('embedded-opentype'),
-//         font-url('#{$font}.woff') format('woff'),
-//         font-url('#{$font}.ttf')  format('truetype');
-//  }
-//}

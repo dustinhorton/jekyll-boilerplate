@@ -7,7 +7,7 @@ $img-path:  '/img/'  !default;
 $font-path: '/font/' !default;
 
 //  =TYPE
-$text: #000 !default;
+$color: #000 !default;
 $fonts: helvetica neue, helvetica, arial, sans-serif !default;
 $font-size: 16px !default;
 
@@ -15,7 +15,7 @@ $line-height: 1.35 !default;
 
 $h-font-weight: normal !default;
 
-$placeholder: rgba($text, 0.75) !default;
+$placeholder: rgba($color, 0.75) !default;
 $btn-align: left !default;
 
 
@@ -144,3 +144,12 @@ $ultra: 900;
 //  =SITE
 //  ----------------------------------------------------------------------
 
+//@each $font in  {
+//  @font-face {
+//    font-family: $font;
+//    font-weight: normal;
+//    src: font-url('#{$font}.eot?') format('embedded-opentype'),
+//         font-url('#{$font}.woff') format('woff'),
+//         font-url('#{$font}.ttf')  format('truetype');
+//  }
+//}

@@ -43,6 +43,15 @@ $prefixes: webkit, moz, ms, o;
   }
 }
 
+@mixin btn-full {
+  width: 100%;
+  display: block;
+  text-align: $btn-align;
+}
+.btn-full {
+  @include btn-full;
+}
+
 @mixin center($w, $h) {
   width: $w;
   height: $h;
@@ -74,6 +83,14 @@ $prefixes: webkit, moz, ms, o;
 }
 .cf {
   @include cf;
+}
+
+@mixin img-full {
+  width: 100%;
+  max-width: none;
+}
+.img-full {
+  @include img-full;
 }
 
 @mixin list-float($m-r: 0, $m-y: 0) {
@@ -213,6 +230,10 @@ $prefixes: webkit, moz, ms, o;
   font-size: rem($size);
 }
 
+@mixin letter-spacing($size) {
+  letter-spacing: letter-spacing($size);
+}
+
 @mixin text-break {
   word-break: break-all;
   word-break: break-word;
@@ -292,7 +313,7 @@ $hidpi: '-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi';
 }
 
 @mixin reset-type {
-  color: $text;
+  color: $color;
   font-family: $fonts;
   font-size: $font-size;
   line-height: $line-height;
