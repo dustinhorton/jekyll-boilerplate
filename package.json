@@ -2,6 +2,7 @@
   "name": "x",
   "version": "1.0.0",
   "description": "",
+  "author": "Dustin Horton <d@dustinhorton.com> (http://dustinhorton.com)",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.0",

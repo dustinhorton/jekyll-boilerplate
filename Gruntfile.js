@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     assets: '',
-    img_types: 'svg, svgz, png, jpg, gif',
+    img_types: 'svg,svgz,png,jpg,gif',
 
     devUpdate: {
       main: {
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          '<%= assets %>css/style.min.css': '<%= assets %>_css/style.scss'
+          '<%= assets %>css/style.css': '<%= assets %>_css/style.scss'
         }
       }
     },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      js: {
+      dist: {
         src: [
           '<%= assets %>_js/vendor/**/*.js',
           '<%= assets %>_js/*.js',
@@ -61,8 +61,8 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      js: {
-        src: '<%= concat.js.dest %>',
+      dist: {
+        src: '<%= concat.dist.dest %>',
         dest: '<%= assets %>js/script.min.js'
       }
     },
@@ -75,16 +75,16 @@ module.exports = function(grunt) {
     },
 
     //sprite: {
-    //  all: {
+    //  dist: {
     //    src: '<%= assets %>_img/sprite/**/*.png',
     //    dest: '<%= assets %>_img/sprite.png',
-    //    destCss: '<%= assets %>css/_sprite.scss',
+    //    destCss: '<%= assets %>_css/_sprite.scss',
     //    padding: 2
     //  }
     //},
 
     imagemin: {
-      assets: {
+      dist: {
         files: [{
           expand: true,
           cwd: '<%= assets %>_img/',
@@ -99,10 +99,10 @@ module.exports = function(grunt) {
 
     shell: {
       jekyll_serve: {
-        command: "jekyll serve"
+        command: 'jekyll serve'
       },
       jekyll_build: {
-        command: "jekyll build"
+        command: 'jekyll build'
       }
     },
 
@@ -133,9 +133,16 @@ module.exports = function(grunt) {
           'shell:jekyll_build'
         ]
       },
+      //img_sprite: {
+      //  files: ['<%= assets %>_img/sprite/**/*.png'],
+      //  tasks: [
+      //    'sprite',
+      //    'shell:jekyll_build'
+      //  ]
+      //},
       livereload: {
         files: [
-          '*.html',
+          '**/*.html',
           '<%= assets %>css/style.min.css',
           '<%= assets %>js/script.min.js',
           '<%= assets %>img/**/*.{<%= img_types %>}'
@@ -146,6 +153,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('serve', ['shell:jekyll_serve']);
-  grunt.registerTask('default', ['sass', 'newer:postcss', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
+  //grunt.registerTask('default', ['newer:sass', 'newer:postcss', 'newer:concat', 'newer:sprite', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
+  grunt.registerTask('default', ['newer:sass', 'newer:postcss', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
   grunt.registerTask('update', ['devUpdate']);
 };

@@ -20,16 +20,16 @@ $btn-align: left !default;
 
 
 //  =GRID
-$cols:             3     !default;
-$cols-total:       $cols !default;
-$cols-fixed-total: $cols !default;
-$cols-copy-total:  $cols !default;
+$cols:      3     !default;
+$cols-solo: $cols !default;
+$cols-copy: $cols !default;
 
 
 //  =SPACING
 $gutter:   20px !default;
 $gutter-y: 50px !default;
-$block-y:  20px !default;
+
+$block-margin: 20px !default;
 
 $container-gutter: $gutter !default;
 
@@ -46,6 +46,7 @@ $content: 980px !default;
 
 //  =ANIMATION
 $duration: 150ms !default;
+
 $ease: ease-in-out !default;
 
 
@@ -57,22 +58,35 @@ $ease: ease-in-out !default;
 
 //  =VIEWPORTS
 $full:       $content + $container-gutter * 2 !default;
-$gt-full:    $full + 1                        !default;
-$lt-full:    $full - 1                        !default;
-$desktop:    960px                            !default;
-$tablet:     768px                            !default;
-$mobile:     568px                            !default;
-$lt-mobile:  $mobile - 1                      !default;
-$mobile-med: 480px                            !default;
-$mobile-sm:  320px                            !default;
-$bps: full $full, lt-full $lt-full, desktop $desktop, tablet $tablet, mobile $mobile, lt-mobile $lt-mobile mobile-med $mobile-med, mobile-sm $mobile-sm !default;
+$gt-full:    $full + 1 !default;
+$lt-full:    $full - 1 !default;
+$desktop:    980px !default;
+$tablet:     768px !default;
+$mobile:     568px !default;
+$lt-mobile:  $mobile - 1 !default;
+$mobile-med: 480px !default;
+$mobile-sm:  320px !default;
+
+$bps:
+  full       $full,
+  lt-full    $lt-full,
+  desktop    $desktop,
+  tablet     $tablet,
+  mobile     $mobile,
+  mobile-med $mobile-med,
+  mobile-sm  $mobile-sm
+  !default;
 
 
 //  =COLORS
 $fb:        #3b5998;
 $twitter:   #00aced;
 $pinterest: #cb2027;
-$socials: fb $fb, twitter $twitter, pinterest $pinterest;
+$socials:
+  fb        $fb,
+  twitter   $twitter,
+  pinterest $pinterest
+  !default;
 
 
 //  =WEIGHTS
@@ -83,59 +97,6 @@ $med:   500;
 $sbold: 600;
 $xbold: 800;
 $ultra: 900;
-
-
-
-
-//  ----------------------------------------------------------------------
-//  =DISPLAY
-//  ----------------------------------------------------------------------
-
-@mixin hidden {
-  width: 1px;
-  height: 1px;
-  border: 0;
-  clip: rect(0 0 0 0);
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-}
-.hidden {
-  @include hidden;
-}
-
-%hide {
-  display: none !important;
-}
-
-.hide {
-  @extend %hide;
-}
-
-.show {
-  display: inherit;
-}
-
-@each $bp in $bps {
-  .hide-show-#{nth($bp, 1)} {
-    @extend %hide;
-
-    @media (max-width: nth($bp, 2)) {
-      display: inherit !important;
-
-      &.inline {
-        display: inline !important;
-      }
-    }
-  }
-
-  .show-hide-#{nth($bp, 1)} {
-    @media (max-width: nth($bp, 2)) {
-      display: none !important;
-    }
-  }
-}
 
 
 

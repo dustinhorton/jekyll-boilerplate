@@ -48,11 +48,8 @@ $prefixes: webkit, moz, ms, o;
   display: block;
   text-align: $btn-align;
 }
-.btn-full {
-  @include btn-full;
-}
 
-@mixin center($w, $h) {
+@mixin center($w, $h: $w) {
   width: $w;
   height: $h;
   margin: (-$h / 2) 0 0 (-$w / 2);
@@ -61,13 +58,16 @@ $prefixes: webkit, moz, ms, o;
   left: 50%;
 }
 
-@mixin center-v {
-  display: table;
+@mixin center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-  > * {
-    display: table-cell;
-    vertical-align: middle;
-  }
+@mixin center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @mixin cf {
@@ -81,16 +81,41 @@ $prefixes: webkit, moz, ms, o;
     clear: both;
   }
 }
-.cf {
-  @include cf;
+
+@mixin circle($size) {
+  @include size($size);
+  border-radius: 50%;
+}
+
+@mixin hidden {
+  width: 1px;
+  height: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }
 
 @mixin img-full {
   width: 100%;
   max-width: none;
 }
-.img-full {
-  @include img-full;
+
+@mixin list-alpha {
+  list-style: lower-alpha;
+  padding-left: $list-p;
+}
+
+@mixin list-bulleted {
+  list-style: disc;
+  padding-left: $list-p;
+}
+
+@mixin list-numbered {
+  list-style: decimal;
+  padding-left: $list-p;
 }
 
 @mixin list-float($m-r: 0, $m-y: 0) {
@@ -98,9 +123,11 @@ $prefixes: webkit, moz, ms, o;
 
   > li {
     float: left;
+
     @if $m-r != 0 {
       margin-right: $m-r;
     }
+
     @if $m-y != 0 {
       margin-bottom: $m-y;
     }
@@ -108,9 +135,14 @@ $prefixes: webkit, moz, ms, o;
 }
 
 @mixin list-inline($m: 0) {
-  > li { display: inline-block; }
+  > li {
+    display: inline-block;
+  }
+
   @if $m != 0 {
-    > li + li { margin-left: $m; }
+    > li + li {
+      margin-left: $m;
+    }
   }
 }
 
@@ -205,6 +237,11 @@ $prefixes: webkit, moz, ms, o;
   -webkit-overflow-scrolling: touch;
 }
 
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
 @mixin transition($args...) {
   transition: $duration $ease;
   transition-property: $args;
@@ -230,8 +267,12 @@ $prefixes: webkit, moz, ms, o;
   font-size: rem($size);
 }
 
-@mixin letter-spacing($size) {
-  letter-spacing: letter-spacing($size);
+@mixin letter-spacing($num) {
+  letter-spacing: letter-spacing($num);
+}
+
+@mixin line-height($px) {
+  line-height: line-height($px);
 }
 
 @mixin text-break {
@@ -252,9 +293,6 @@ $prefixes: webkit, moz, ms, o;
   overflow: hidden;
   text-indent: 150%;
   white-space: nowrap;
-}
-.hide-text {
-  @include hide-text;
 }
 
 

@@ -3,8 +3,9 @@
 //  ----------------------------------------------------------------------
 
 @mixin cols($gutter: $gutter) {
-  margin-right: -$gutter / 2;
-  margin-left:  -$gutter / 2;
+  $margin: -$gutter / 2;
+  margin-right: $margin;
+  margin-left:  $margin;
 }
 
 @mixin col($gutter: $grid-gutter) {
@@ -14,71 +15,81 @@
 @mixin generate-cols($gutter: $gutter) {
   @include cols($gutter);
 
-  > [class*="col-"] {
+  > [class*="col---"] {
     @include col($gutter);
   }
 }
 
-@mixin reset-cols {
-  margin-right: 0; margin-left: 0;
+@mixin generate-all-cols($cols, $bp) {
+  @for $i from 1 through $cols {
+    @if $i == 1 and $bp == full {
+      .col---#{$i} {
+        width: 100%;
+      }
+    }
+    @else {
+      @if $i == 2 and $bp != full {
+        .col---#{$bp}-1 {
+          width: 100%;
+        }
+      }
 
-  > [class*="col-"] {
+      @for $x from 1 through $i {
+        @if $x != $i {
+          @if $bp == full {
+            .col---#{$x}-#{$i} {
+              width: percentage($x, $i);
+            }
+          }
+          @else {
+            .col---#{$bp}-#{$x}-#{$i} {
+              width: percentage($x, $i);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin reset-cols {
+  margin-right: 0;
+  margin-left: 0;
+
+  > [class*="col---"] {
     width: auto;
     float: none;
-    padding-right: 0;
-    padding-left: 0;
+    padding: 0;
   }
 }
 
 
 .cols {
-  @include cols($gutter);
   @include cf;
+  @include cols($gutter);
 
-  > [class*="col-"] {
+  > [class*="col---"] {
     @include col($gutter);
     min-height: 1px;
     float: left;
   }
 }
 
-.cols-tight {
-  @include generate-cols(0);
-}
-
-.cols-rev > [class*="col-"] {
+.cols---rev > [class*="col---"] {
   float: right;
 }
 
-
-@mixin generate-all-cols($cols, $bp: '') {
-  @for $i from 2 through $cols {
-    @if $i == 2 {
-      .col-#{$bp}-1 { width: 100%; }
-    }
-
-    @for $x from 1 through $i {
-      @if $bp == '' {
-        .col-#{$x}-#{$i} {
-          width: percentage($x, $i);
-        }
-      }
-      @else {
-        .col-#{$bp}-#{$x}-#{$i} { width: percentage($x, $i); }
-      }
-    }
-  }
-}
-
-@each $bp in $bps {
-  @if nth($bp, 1) == full {
-    @include generate-all-cols($cols-total);
+@each $name, $var in $bps {
+  @if $name == full {
+    @include generate-all-cols($cols, $name);
   }
   @else {
-    @media (max-width: nth($bp, 2)) {
-      @include generate-all-cols($cols-total, nth($bp, 1));
+    @media (max-width: $var) {
+      @include generate-all-cols($cols, $name);
 
-      .cols-reset-#{nth($bp, 1)} { @include reset-cols; }
+      .cols-reset---#{$name} {
+        @include reset-cols;
+      }
     }
   }
 }
@@ -90,21 +101,24 @@
 //  =COLUMN - SOLO
 //  ----------------------------------------------------------------------
 
-[class*="col-"].col-solo { width: auto; }
-
-@mixin generate-cols-solo($cols-total) {
-  @for $i from 1 through $cols-total {
-    @for $cols from 1 through $cols-total {
-      @if ($cols < $cols-total) {
-        .col-#{$cols}-#{$cols-total}.col-solo { max-width: $full / $cols-total * $cols; }
+@mixin generate-cols-solo($cols: $cols-solo) {
+  @for $i from 1 through $cols {
+    @for $x from 1 through $i {
+      @if $i != 1 and $x != $i {
+        .col---#{$x}-#{$i}.col---solo {
+          max-width: $full / $i * $x;
+        }
       }
     }
-
-    $cols-total: $cols-total - 1;
   }
 }
 
-@include generate-cols-solo($cols-total);
+
+.col---solo {
+  width: auto;
+}
+
+@include generate-cols-solo;
 
 
 
@@ -118,24 +132,28 @@
   column-gap: $gutter;
 }
 
-@mixin generate-cols-copy($cols, $bp: '') {
+@mixin generate-cols-copy($cols, $bp) {
   @for $i from 1 through $cols {
-    @if $bp == '' {
-      .cols-#{$i} { @include cols-copy($i); }
+    @if $bp == full {
+      .cols---#{$i} {
+        @include cols-copy($i);
+      }
     }
     @else {
-      .cols-#{$bp}-#{$i} { column-count: $i; }
+      .cols---#{$bp}-#{$i} {
+        column-count: $i;
+      }
     }
   }
 }
 
-@each $bp in $bps {
-  @if nth($bp, 1) == full {
-    @include generate-cols-copy($cols-copy-total);
+@each $name, $var in $bps {
+  @if $name == full {
+    @include generate-cols-copy($cols-copy, $name);
   }
   @else {
-    @media (max-width: nth($bp, 2)) {
-      @include generate-cols-copy($cols-copy-total, nth($bp, 1));
+    @media (max-width: $var) {
+      @include generate-cols-copy($cols-copy, $name);
     }
   }
 }
@@ -144,7 +162,10 @@
   break-inside: avoid;
   //display: table;  // ff - https://bugzilla.mozilla.org/show_bug.cgi?id=549114#c6
 }
-.col-unit { @include col-unit; }
+
+.col-unit {
+  @include col-unit;
+}
 
 
 
@@ -153,10 +174,21 @@
 //  =ROWS
 //  ----------------------------------------------------------------------
 
-@each $bp in $bps {
-  .row-#{nth($bp, 1)} {
-    @media (max-width: nth($bp, 2)) {
-      margin-bottom: $gutter-y;
+@mixin row {
+  margin-bottom: $gutter-y;
+}
+
+@each $name, $var in $bps {
+  @if $name == full {
+    .row {
+      @include row;
+    }
+  }
+  @else {
+    .row---#{$name} {
+      @media (max-width: $var) {
+        @include row;
+      }
     }
   }
 }

@@ -26,7 +26,7 @@
 
   <body>
     <header class="header">
-      <a href="/" class="header-brand"></a>
+      <a href="/" class="header-brand">{{ site.title }}</a>
 
       <nav class="nav">
         {% include pages.html %}
@@ -45,6 +45,7 @@
     </footer>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{ 'js/script.min.js' | prepend: site.baseurl | prepend: site.url }}"></script>
   </body>
 </html>

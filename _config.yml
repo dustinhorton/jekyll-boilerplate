@@ -7,14 +7,10 @@ baseurl: ""
 permalink: /:title/
 markdown: kramdown
 
-gems:
-  - sass-globbing
-
 exclude:
   - .DS_Store
   - node_modules
   - package.json
   - Gruntfile.js
-  - .sass-cache
   - .git
   - .gitignore

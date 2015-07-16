@@ -3,8 +3,7 @@
 ## Setup
 1. Install the dependencies:
    ```console
-   gem install jekyll sass-globbing
-   npm install -g grunt-cli
+   gem install jekyll
    npm install
    ```
 

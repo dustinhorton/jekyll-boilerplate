@@ -36,21 +36,11 @@ figcaption {
 }
 
 p {
-  margin: 0 0 $block-y;
+  margin: 0 0 $block-margin;
 }
 
 table {
   width: 100%;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-}
-
-a {
-  color: inherit;
 }
 
 
@@ -64,7 +54,8 @@ select {
 button,
 label[for],
 input[type="checkbox"],
-input[type="radio"] {
+input[type="radio"],
+select {
   cursor: pointer;
 }
 
@@ -76,11 +67,11 @@ select {
 
 input,
 textarea {
-  line-height: normal;
+  line-height: normal;  // override reset
 
   &::placeholder {
     color: $placeholder;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis !important;
   }
 }
 
@@ -94,13 +85,15 @@ select {
 }
 
 
+a {
+  color: inherit;
+}
 
-
-//  ----------------------------------------------------------------------
-//  =SCAFFOLDING
-//  ----------------------------------------------------------------------
-
-.container { max-width: $full; margin: auto; padding: 0 $container-gutter; }
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
 
 
 
@@ -109,39 +102,113 @@ select {
 //  =COMPONENTS
 //  ----------------------------------------------------------------------
 
-.embed { width: 100%; height: 0; padding: 0 0 aspect-ratio(1080, 720); position: relative; }
-.embed > .embed-src { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.btn---full {
+  @include btn-full;
+}
 
 
-.list-alpha    { list-style: lower-alpha; padding-left: $list-p; }
-.list-bulleted { list-style: disc;        padding-left: $list-p; }
-.list-numbered { list-style: decimal;     padding-left: $list-p; }
-.list-blocks > li,
-.list-blocks > dd { margin-bottom: $block-y; }
+.container {
+  max-width: $full;
+  margin: auto;
+  padding: 0 $container-gutter;
+}
 
 
-.form-single { width: 100%; display: table; }
-.form-single-input { width: 100%; display: table-cell; }
-.form-single-action { width: 1%; display: table-cell; padding: 0 0 0 $form-single-gutter; }
+.embed {
+  width: 100%;
+  height: 0;
+  padding: 0 0 aspect-ratio(1080, 720);
+  position: relative;
+}
+
+.embed--src {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.form-single {
+  width: 100%;
+  display: table;
+}
+
+.form-single--input {
+  width: 100%;
+  display: table-cell;
+}
+
+.form-single--action {
+  width: 1%;
+  display: table-cell;
+  padding: 0 0 0 $form-single-gutter;
+}
+
+.form-single--action--btn {
+  white-space: nowrap;
+}
+
+
+.img---full {
+  @include img-full;
+}
+
+
+.list---alpha    { @include list-alpha; }
+.list---bulleted { @include list-bulleted; }
+.list---numbered { @include list-numbered; }
+
+.list---blocks {
+  > li,
+  > dd {
+    margin-bottom: $block-margin;
+  }
+}
 
 
 
 
 //  ----------------------------------------------------------------------
-//  =UTILITIES
+//  =DISPLAY
 //  ----------------------------------------------------------------------
 
-.affix { position: fixed; }
+.hidden {
+  @include hidden;
+}
 
-.block { margin-bottom: $block-y; }
+%hide {
+  display: none !important;
+}
 
-.copy { line-height: $line-height; }
+.hide {
+  @extend %hide;
+}
 
-.context { position: relative; }
+.show {
+  display: inherit;
+}
 
+@each $name, $var in $bps {
+  .hide-show-#{$name} {
+    @extend %hide;
 
-.pull-right { float: right; }
-.pull-left  { float: left;  }
+    @media (max-width: $var) {
+      display: inherit !important;
+
+      &.inline {
+        display: inline-block !important;
+      }
+    }
+  }
+
+  .show-hide-#{$name} {
+    @media (max-width: $var) {
+      display: none !important;
+    }
+  }
+}
 
 
 
@@ -150,11 +217,51 @@ select {
 //  =STATES
 //  ----------------------------------------------------------------------
 
-.active { cursor: default; }
+.active {
+  cursor: default;
+}
+
 .disabled,
-[disabled],
-.disabled *,
-[disabled] * { cursor: default !important; pointer-events: none; }
+[disabled] {
+  &,
+  * {
+    cursor: default !important;
+    pointer-events: none;
+  }
+}
+
+
+
+
+//  ----------------------------------------------------------------------
+//  =UTILITIES
+//  ----------------------------------------------------------------------
+
+.affix {
+  position: fixed;
+}
+
+.block {
+  margin-bottom: $block-margin;
+}
+
+.cf {
+  @include cf;
+}
+
+.context {
+  position: relative;
+}
+
+.copy {
+  line-height: $line-height;
+}
+
+@each $dir in right, left {
+  .pull---#{$dir} {
+    float: $dir;
+  }
+}
 
 
 
@@ -163,7 +270,7 @@ select {
 //  =AT-RULES
 //  ----------------------------------------------------------------------
 
-@viewport{
+@viewport {
   width: device-width;
   user-zoom: fixed;
   zoom: 1.0;
