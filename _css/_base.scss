@@ -75,6 +75,13 @@ textarea {
   }
 }
 
+input {
+  &[type="checkbox"],
+  &[type="radio"] {
+    width: auto;
+  }
+}
+
 textarea {
   resize: vertical;
 }
@@ -191,7 +198,7 @@ img {
 }
 
 @each $name, $var in $bps {
-  .hide-show-#{$name} {
+  .hide-show---#{$name} {
     @extend %hide;
 
     @media (max-width: $var) {
@@ -203,7 +210,7 @@ img {
     }
   }
 
-  .show-hide-#{$name} {
+  .show-hide---#{$name} {
     @media (max-width: $var) {
       display: none !important;
     }

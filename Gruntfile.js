@@ -21,6 +21,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
+          outputStyle: 'expanded',
           sourceMap: true
         },
         files: {
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
     modernizr: {
       dist: {
         devFile: '<%= assets %>_js/vendor/modernizr.js',
-        outputFile: '<%= assets %>js/vendor/modernizr.js',
+        outputFile: '<%= assets %>js/vendor/modernizr.js'
       }
     },
 
