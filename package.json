@@ -26,6 +26,7 @@
     "postcss-opacity": "^2.0.0"
   },
   "dependencies": {
-    "grunt-modernizr": "^0.6.0"
+    "grunt-modernizr": "^0.6.0",
+    "playbook": "dustinhorton/playbook"
   }
 }

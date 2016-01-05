@@ -5,17 +5,11 @@ module.exports = function(grunt) {
     assets: '',
     img_types: 'svg,svgz,png,jpg,gif',
 
-    devUpdate: {
-      main: {
-        options: {
-          updateType: 'force',
-          semver: false
-        }
-      }
-    },
-
     concurrent: {
-      uglify_imagemin: ['uglify', 'imagemin']
+      uglify_imagemin: [
+        'uglify',
+        'imagemin'
+      ]
     },
 
     sass: {
@@ -150,11 +144,27 @@ module.exports = function(grunt) {
         ],
         tasks: ['shell:jekyll_build']
       }
+    },
+
+    devUpdate: {
+      main: {
+        options: {
+          updateType: 'force',
+          semver: false
+        }
+      }
     }
   });
 
   grunt.registerTask('serve', ['shell:jekyll_serve']);
-  //grunt.registerTask('default', ['newer:sass', 'newer:postcss', 'newer:concat', 'newer:sprite', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
-  grunt.registerTask('default', ['newer:sass', 'newer:postcss', 'newer:concat', 'newer:concurrent:uglify_imagemin', 'shell:jekyll_build', 'watch']);
+  grunt.registerTask('default', [
+    'newer:sass',
+    'newer:postcss',
+    'newer:concat',
+    //'newer:sprite',
+    'newer:concurrent:uglify_imagemin',
+    'shell:jekyll_build',
+    'watch'
+  ]);
   grunt.registerTask('update', ['devUpdate']);
 };
