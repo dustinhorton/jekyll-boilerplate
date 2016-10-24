@@ -14,7 +14,7 @@
 
 3. Start the build:
    ```console
-   grunt
+   grunt start
    ```
 
 4. Point your browser to [localhost:4000](http://localhost:4000).

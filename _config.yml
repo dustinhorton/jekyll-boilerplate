@@ -9,8 +9,9 @@ markdown: kramdown
 
 exclude:
   - .DS_Store
+  - bower_components
   - node_modules
-  - package.json
   - Gruntfile.js
+  - package.json
   - .git
   - .gitignore
