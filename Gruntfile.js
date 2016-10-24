@@ -44,8 +44,10 @@ module.exports = function(grunt) {
         src: [
           '<%= assets %>_js/vendor/**/*.js',
           '<%= assets %>_js/*.js',
-          '!<%= assets %>_js/google-analytics.js',
-          '<%= assets %>_js/google-analytics.js',
+          '!<%= assets %>_js/vendor/google-analytics.js',
+          '<%= assets %>_js/vendor/google-analytics.js',
+          '!<%= assets %>_js/analytics.js',
+          '<%= assets %>_js/analytics.js',
           '!<%= assets %>_js/vendor/modernizr.js'
         ],
         dest: '<%= assets %>js/.tmp/script.js'

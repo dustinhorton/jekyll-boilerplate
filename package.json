@@ -5,13 +5,17 @@
   "author": "Dustin Horton <d@dustinhorton.com> (http://dustinhorton.com)",
   "private": true,
   "scripts": {
-    "lint": "./node_modules/.bin/stylelint '_css/**/*.scss' --syntax scss"
+    "lint": "./node_modules/.bin/stylelint '_css/**/*.scss' --syntax scss && ./node_modules/eslint/bin/eslint.js '_js/*.js' --quiet"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
+    "babel-eslint": "^7.0.0",
     "babel-preset-es2015": "^6.16.0",
     "bower": "latest",
     "cssnano": "^3.8.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
     "grunt-cli": "^1.1.0",
