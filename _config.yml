@@ -7,6 +7,10 @@ baseurl: ""
 permalink: /:title/
 markdown: kramdown
 
+gems:
+  - jekyll-feed
+  - jekyll-sitemap
+
 exclude:
   - .DS_Store
   - bower_components
