@@ -1324,12 +1324,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   $.debounce = function (delay, at_begin, callback) {
     return callback === undefined ? jq_throttle(delay, at_begin, false) : jq_throttle(delay, callback, at_begin !== false);
   };
-})(undefined);;var boo = 'butt';
-var boo2 = 'butt';
-var food = 'bar';
-var bay = 'kare';
-
-(function (i, s, o, g, r, a, m) {
+})(undefined);;;(function (i, s, o, g, r, a, m) {
   i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {
     (i[r].q = i[r].q || []).push(arguments);
   }, i[r].l = 1 * new Date();a = s.createElement(o), m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);

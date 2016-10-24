@@ -44,6 +44,8 @@ module.exports = function(grunt) {
         src: [
           '<%= assets %>_js/vendor/**/*.js',
           '<%= assets %>_js/*.js',
+          '!<%= assets %>_js/google-analytics.js',
+          '<%= assets %>_js/google-analytics.js',
           '!<%= assets %>_js/vendor/modernizr.js'
         ],
         dest: '<%= assets %>js/.tmp/script.js'
@@ -130,6 +132,7 @@ module.exports = function(grunt) {
         files: ['<%= assets %>_js/**/*.js'],
         tasks: [
           'newer:concat',
+          'newer:babel',
           'newer:uglify',
           'shell:jekyllBuild'
         ]
@@ -173,8 +176,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'newer:sass',
     'newer:postcss',
-    'newer:babel',
     'newer:concat',
+    'newer:babel',
     //'newer:sprite',
     'newer:concurrent:uglifyImagemin',
     'shell:jekyllBuild'
