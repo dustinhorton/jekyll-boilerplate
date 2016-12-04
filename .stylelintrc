@@ -36,10 +36,20 @@
 
     "at-rule-name-newline-after": "always-multi-line",
     "at-rule-no-unknown": [true, {
-      "ignoreAtRules": ["for"]
+      "ignoreAtRules": [
+        "content",
+        "each",
+        "else",
+        "extend",
+        "for",
+        "function",
+        "if",
+        "include",
+        "mixin",
+        "return"
+      ]
     }],
     "at-rule-no-vendor-prefix": true,
-    "color-named": "always-where-possible",
     "color-no-hex": true,
     "declaration-block-no-ignored-properties": true,
     "declaration-block-properties-order": [
@@ -193,8 +203,8 @@
       "vertical-align",
       "visibility",
       "white-space",
-      "word-wrap",
       "word-break",
+      "word-wrap",
       "z-index",
       "zoom",
       "will-change",
@@ -233,7 +243,6 @@
       "except": ["empty"]
     }],
     "media-feature-no-missing-punctuation": true,
-    "no-browser-hacks": true,
     "no-descending-specificity": true,
     "no-duplicate-selectors": true,
     "no-indistinguishable-colors": true,
