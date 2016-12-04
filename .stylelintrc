@@ -4,11 +4,18 @@
     "stylelint-scss"
   ],
   "rules": {
+    "block-no-empty": null,
+    "no-empty-source": null,
+
     "at-rule-empty-line-before": null,
-    "block-opening-brace-space-before": "always-multi-line",
     "comment-empty-line-before": null,
     "declaration-colon-space-after": null,
     "declaration-empty-line-before": null,
+    "no-missing-end-of-source-newline": null,
+
+    "at-rule-name-space-after": "always",
+    "block-opening-brace-space-before": "always-multi-line",
+    "custom-property-empty-line-before": "never",
     "max-empty-lines": 4,
     "selector-list-comma-newline-after": "always-multi-line",
     "selector-pseudo-class-no-unknown": [true, {
