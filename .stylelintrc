@@ -6,6 +6,7 @@
   "rules": {
     "block-no-empty": null,
     "no-empty-source": null,
+    "stylelint-disable-reason": null,
 
     "at-rule-empty-line-before": null,
     "comment-empty-line-before": null,
@@ -33,7 +34,14 @@
     "scss/operator-no-unspaced": true,
     "scss/selector-no-redundant-nesting-selector": true,
 
+    "at-rule-name-newline-after": "always-multi-line",
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["for"]
+    }],
     "at-rule-no-vendor-prefix": true,
+    "color-named": "always-where-possible",
+    "color-no-hex": true,
+    "declaration-block-no-ignored-properties": true,
     "declaration-block-properties-order": [
       "content",
       "quotes",
@@ -202,10 +210,56 @@
       "transition-delay",
       "transition-duration"
     ],
+    "declaration-block-semicolon-newline-before": "never-multi-line",
+    "declaration-no-important": true,
+    "declaration-property-unit-blacklist": {
+      "font-size": ["em"]
+    },
+    "declaration-property-unit-whitelist": {
+      "border": ["px"],
+      "border-width": ["px"],
+      "border-top-width": ["px"],
+      "border-right-width": ["px"],
+      "border-bottom-width": ["px"],
+      "border-left-width": ["px"]
+    },
+    "declaration-property-value-blacklist": {
+      "flex": ["1"]
+    },
     "font-family-name-quotes": "always-where-required",
-    "function-url-quotes": "always",
+    "font-weight-notation": "named-where-possible",
+    "function-url-no-scheme-relative": true,
+    "function-url-quotes": ["always", {
+      "except": ["empty"]
+    }],
+    "media-feature-no-missing-punctuation": true,
+    "no-browser-hacks": true,
+    "no-descending-specificity": true,
+    "no-duplicate-selectors": true,
+    "no-indistinguishable-colors": true,
+    "no-unknown-animations": true,
+    "number-max-precision": 4,
     "property-no-vendor-prefix": true,
+    "root-no-standard-properties": true,
+    "selector-attribute-quotes": "always",
+    "selector-list-comma-newline-before": "never-multi-line",
+    "selector-list-comma-space-after": "always-single-line",
+    "selector-no-empty": true,
+    "selector-no-id": true,
     "selector-no-vendor-prefix": true,
+    "selector-pseudo-element-case": "lower",
+    "selector-root-no-composition": true,
+    "unit-blacklist": [
+      "ch",
+      "cm",
+      "ex",
+      "in",
+      "mm",
+      "pc",
+      "pt",
+      "q"
+    ],
+    "value-keyword-case": "lower",
     "value-no-vendor-prefix": true
   }
 }
