@@ -22,6 +22,6 @@ module.exports = {
       }
     }],
     'space-before-function-paren': ['error', 'never'],
-    'spaced-comment': [null]
+    'spaced-comment': 0
   }
 };
