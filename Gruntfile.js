@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       options: {
         map: true,
         processors: [
-          require('autoprefixer')({browsers: 'last 2 versions, Explorer >= 10'}),
+          require('autoprefixer')({browsers: 'last 2 versions, Explorer >= 10, > 1%'}),
           require('postcss-focus')(),
           require('cssnano')()
         ]

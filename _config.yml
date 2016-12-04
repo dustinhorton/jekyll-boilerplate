@@ -1,8 +1,8 @@
-title: ""
-description: ""
+title: ''
+description: ''
 
 url:
-baseurl: ""
+baseurl: ''
 
 permalink: /:title/
 markdown: kramdown
@@ -15,7 +15,13 @@ exclude:
   - .DS_Store
   - bower_components
   - node_modules
+  - Gemfile
+  - Gemfile.lock
   - Gruntfile.js
   - package.json
+  - README.md
+  - .eslintignore
+  - .eslintrc.js
   - .git
   - .gitignore
+  - .stylelintrc
