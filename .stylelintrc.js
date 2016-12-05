@@ -254,6 +254,7 @@ module.exports = {
     'property-no-vendor-prefix': true,
     'root-no-standard-properties': true,
     'selector-attribute-quotes': 'always',
+    'selector-list-comma-newline-after': 'always',
     'selector-list-comma-newline-before': 'never-multi-line',
     'selector-list-comma-space-after': 'always-single-line',
     'selector-no-empty': true,
