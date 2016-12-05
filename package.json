@@ -5,7 +5,9 @@
   "author": "Dustin Horton <d@dustinhorton.com> (http://dustinhorton.com)",
   "license": "UNLICENSED",
   "scripts": {
-    "lint": "./node_modules/.bin/stylelint '_css/**/*.scss' --syntax scss && ./node_modules/eslint/bin/eslint.js '_js/*.js' --quiet"
+    "lint": "./node_modules/.bin/stylelint '_css/**/*.scss' --syntax scss && ./node_modules/eslint/bin/eslint.js '_js/*.js' --quiet",
+    "lint-css": "./node_modules/.bin/stylelint '_css/**/*.scss' --syntax scss",
+    "lint-js": "./node_modules/eslint/bin/eslint.js '_js/*.js' --quiet"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
